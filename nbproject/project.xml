@@ -7,6 +7,7 @@
             <standalone/>
             <module-dependencies>
                 <dependency>
+<<<<<<< HEAD
                     <code-name-base>org.openide.awt</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
@@ -15,11 +16,17 @@
                     </run-dependency>
                 </dependency>
                 <dependency>
+=======
+>>>>>>> origin/master
                     <code-name-base>org.openide.util</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>
+<<<<<<< HEAD
                         <specification-version>9.25</specification-version>
+=======
+                        <specification-version>8.29.3</specification-version>
+>>>>>>> origin/master
                     </run-dependency>
                 </dependency>
                 <dependency>
@@ -27,7 +34,11 @@
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>
+<<<<<<< HEAD
                         <specification-version>8.51</specification-version>
+=======
+                        <specification-version>8.19.1</specification-version>
+>>>>>>> origin/master
                     </run-dependency>
                 </dependency>
                 <dependency>
@@ -36,14 +47,23 @@
                     <compile-dependency/>
                     <run-dependency>
                         <release-version>10</release-version>
+<<<<<<< HEAD
                         <specification-version>10.25.38.1</specification-version>
+=======
+                        <specification-version>10.3.14</specification-version>
+>>>>>>> origin/master
                     </run-dependency>
                 </dependency>
             </module-dependencies>
             <public-packages/>
             <class-path-extension>
+<<<<<<< HEAD
                 <runtime-relative-path>ext/opencv-4140.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/opencv-4140.jar</binary-origin>
+=======
+                <runtime-relative-path>ext/opencv-300.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/opencv-300.jar</binary-origin>
+>>>>>>> origin/master
             </class-path-extension>
         </data>
     </configuration>

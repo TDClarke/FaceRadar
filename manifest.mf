@@ -2,5 +2,9 @@ Manifest-Version: 1.0
 AutoUpdate-Show-In-Client: true
 OpenIDE-Module: com.sazquatch.faceradar
 OpenIDE-Module-Localizing-Bundle: com/sazquatch/faceradar/Bundle.properties
+<<<<<<< HEAD
 OpenIDE-Module-Specification-Version: 2.0.1
+=======
+OpenIDE-Module-Specification-Version: 1.0
+>>>>>>> origin/master
 

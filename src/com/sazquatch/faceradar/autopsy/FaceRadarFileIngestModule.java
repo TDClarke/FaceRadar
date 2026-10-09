@@ -31,7 +31,10 @@ package com.sazquatch.faceradar.autopsy;
 
 import com.sazquatch.faceradar.FaceRadarDetectedImage;
 import com.sazquatch.faceradar.FaceRadarImageScanner;
+<<<<<<< HEAD
 import com.sazquatch.faceradar.FaceRadarNativeLoader;
+=======
+>>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -46,12 +49,17 @@ import org.sleuthkit.autopsy.ingest.IngestServices;
 import org.sleuthkit.autopsy.ingest.ModuleDataEvent;
 import org.sleuthkit.autopsy.ingest.IngestModuleReferenceCounter;
 import org.sleuthkit.datamodel.AbstractFile;
+<<<<<<< HEAD
 import org.sleuthkit.datamodel.AnalysisResult;
 import org.sleuthkit.datamodel.AnalysisResultAdded;
 import org.sleuthkit.datamodel.BlackboardArtifact;
 import org.sleuthkit.datamodel.BlackboardAttribute;
 import org.sleuthkit.datamodel.Image;
 import org.sleuthkit.datamodel.Score;
+=======
+import org.sleuthkit.datamodel.BlackboardArtifact;
+import org.sleuthkit.datamodel.BlackboardAttribute;
+>>>>>>> origin/master
 import org.sleuthkit.datamodel.TskCoreException;
 import org.sleuthkit.datamodel.TskData;
 
@@ -63,11 +71,21 @@ public class FaceRadarFileIngestModule implements FileIngestModule {
     private IngestJobContext context = null;
     private static final IngestModuleReferenceCounter refCounter = new IngestModuleReferenceCounter();
     //private int count = 0;
+<<<<<<< HEAD
     private final static String MODULE_NAME = FaceRadarIngestModuleFactory.getModuleName();
 
     FaceRadarFileIngestModule(FaceRadarIngestJobSettings settings) {
         this.skipKnownFiles = settings.skipKnownFiles();
         FaceRadarNativeLoader.load();
+=======
+
+    FaceRadarFileIngestModule(FaceRadarIngestJobSettings settings) {
+        this.skipKnownFiles = settings.skipKnownFiles();
+        System.loadLibrary("opencv_java300");
+        //System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        
+         ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
+>>>>>>> origin/master
          
     }
 
@@ -101,6 +119,7 @@ public class FaceRadarFileIngestModule implements FileIngestModule {
         }
 
         try {
+<<<<<<< HEAD
             FaceRadarDetectedImage image = FaceRadarImageScanner.scanImage(file);
 
             if (image != null) {
@@ -125,6 +144,26 @@ public class FaceRadarFileIngestModule implements FileIngestModule {
                                 "A face was detected in " + file.getName(),
                                 String.valueOf(file.getId()),
                                 result));
+=======
+
+            FaceRadarDetectedImage image = FaceRadarImageScanner.scanImage(file);
+
+            if (image != null) {
+
+                //count++;
+
+                BlackboardArtifact artifact = file.newArtifact(BlackboardArtifact.ARTIFACT_TYPE.TSK_INTERESTING_FILE_HIT);
+                BlackboardAttribute attribute = new BlackboardAttribute(BlackboardAttribute.ATTRIBUTE_TYPE.TSK_SET_NAME.getTypeID(), FaceRadarIngestModuleFactory.getModuleName(), "FaceRadar Detected Faces");
+                artifact.addAttribute(attribute);
+
+                // This method is thread-safe with per ingest job reference counted
+                // management of shared data.
+                addToBlackboardPostCount(context.getJobId(), 1L);
+
+                // Fire an event to notify any listeners for blackboard postings.
+                ModuleDataEvent event = new ModuleDataEvent(FaceRadarIngestModuleFactory.getModuleName(), BlackboardArtifact.ARTIFACT_TYPE.TSK_INTERESTING_FILE_HIT);
+                IngestServices.getInstance().fireModuleDataEvent(event);
+>>>>>>> origin/master
             }
             return IngestModule.ProcessResult.OK;
 
@@ -133,10 +172,13 @@ public class FaceRadarFileIngestModule implements FileIngestModule {
             Logger logger = ingestServices.getLogger(FaceRadarIngestModuleFactory.getModuleName());
             logger.log(Level.SEVERE, "Error processing file (id = " + file.getId() + ")", ex);
             return IngestModule.ProcessResult.ERROR;
+<<<<<<< HEAD
         } catch (Throwable t) {
             Logger logger = IngestServices.getInstance().getLogger(FaceRadarIngestModuleFactory.getModuleName());
             logger.log(Level.SEVERE, "Unexpected error processing file (id = " + file.getId() + ")", t);
             return IngestModule.ProcessResult.ERROR;
+=======
+>>>>>>> origin/master
         }
     }
 
